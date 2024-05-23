@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   get 'features' => 'pages#features', as: :features
   get 'product' => 'pages#product', as: :product
   get 'blog' => 'pages#blog', as: :blog
+  post 'modal' => 'pages#modal', defaults: { format: :json }
 end

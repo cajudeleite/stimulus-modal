@@ -11,15 +11,8 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="flex flex-col justify-center h-screen">
+  <body class="flex flex-col justify-center h-screen" data-controller="modal">
     <%= render 'layouts/navbar' %>
-    <%= render 'pages/modal', locals: {
-      title: "Title",
-      content: "Content",
-      callback_text: "Ok",
-      callback_path: "/",
-      color: "blue"
-    } %>
     <%= yield %>
   </body>
 </html>
