@@ -13,6 +13,13 @@
 
   <body class="flex flex-col justify-center h-screen">
     <%= render 'layouts/navbar' %>
+    <%= render 'pages/modal', locals: {
+      title: "Title",
+      content: "Content",
+      callback_text: "Ok",
+      callback_path: "/",
+      color: "blue"
+    } %>
     <%= yield %>
   </body>
 </html>
