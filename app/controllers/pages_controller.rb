@@ -6,7 +6,7 @@ class PagesController < ApplicationController
       format.json do
         render json: {
           modal: render_to_string(
-            partial: 'pages/modal',
+            partial: 'pages/default',
             formats: :html,
             locals: {
               title: params[:title],

@@ -2,11 +2,19 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="modal"
 export default class extends Controller {
+<<<<<<< HEAD
   static targets = ["modal"];
 
   async createModal(event) {
     event.preventDefault();
-    
+
+=======
+  static targets = ["modal", "skeleton", "content"];
+
+  async createDefaultModal(event) {
+    event.preventDefault();
+
+>>>>>>> lecture
     const { title, content, callbackText, callbackPath, color } =
       event.target.dataset;
 
@@ -24,12 +32,33 @@ export default class extends Controller {
         color,
       }),
     });
-    const data = await response.json();
 
-    document.body.insertAdjacentHTML("afterbegin", data.modal);
+    const data = await response.json();
+    const { modal } = data;
+
+    this.renderModal(modal);
   }
 
-  removeModal() {
-    document.body.removeChild(this.modalTarget);
+  renderModal(content) {
+    const skeleton = this.skeletonTarget.content.cloneNode(true);
+    document.body.appendChild(skeleton);
+
+    this.contentTarget.innerHTML = content;
+  }
+
+  closeModal() {
+    const modal = this.modalTarget;
+
+    document.body.removeChild(modal);
+  }
+
+  createCustomModal(event) {
+    event.preventDefault();
+
+    const { contentId } = event.target.dataset;
+    const content = document.getElementById(contentId).content.cloneNode(true)
+      .firstElementChild.outerHTML;
+
+    this.renderModal(content);
   }
 }
